@@ -4,38 +4,18 @@
  */
 package GUIs;
 
-import java.awt.List;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author jorge
  */
-public class Reservar extends javax.swing.JFrame {
+public class Cancelaciones extends javax.swing.JFrame {
 
     /**
-     * Creates new form Reservar
+     * Creates new form Cancelaciones
      */
-    public Reservar() {
+    public Cancelaciones() {
         initComponents();
     }
-    
-    
-    
-//    private void cargarReservas() {
-//    List<Reserva> reservas = reservaDAO.obtenerTodasReservas();
-//    DefaultTableModel modelo = (DefaultTableModel) TableReservas.getModel();
-//    modelo.setRowCount(0); // Limpiar la tabla
-//    for (Reserva reserva : reservas) {
-//        modelo.addRow(new Object[]{
-//            reserva.getCodigo(),
-//            reserva.getTipoMesa(),
-//            reserva.getCapacidadMesa(),
-//            reserva.getUbicacionMesa()
-//        });
-//    }
-//}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,57 +26,39 @@ public class Reservar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCancelar = new javax.swing.JButton();
-        btnReservaciones = new javax.swing.JButton();
-        btnConfirmar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TableReservas = new javax.swing.JTable();
+        TableCancelaciones = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jComboBoxUbicacion = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        jComboBoxNombre = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        jComboBoxFecha = new javax.swing.JComboBox<>();
         jComboBoxTipo = new javax.swing.JComboBox<>();
         jComboBoxCapacidad = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBoxNombre = new javax.swing.JComboBox<>();
-        jComboBoxFecha = new javax.swing.JComboBox<>();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-
-        btnReservaciones.setText("Reservaciones");
-
-        btnConfirmar.setText("confirmar");
-        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarActionPerformed(evt);
-            }
-        });
-
-        TableReservas.setModel(new javax.swing.table.DefaultTableModel(
+        TableCancelaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Tipo", "Capacidad", "Ubicacion"
+                "Codigo", "Nombre", "Tipo", "Capacidad", "Ubicacion", "Fecha"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -107,9 +69,13 @@ public class Reservar extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TableReservas);
+        jScrollPane1.setViewportView(TableCancelaciones);
+
+        jLabel5.setText("Filtro nombre:");
 
         jLabel1.setText("Filtro ubicacion:");
+
+        jLabel6.setText("Filtro fecha:");
 
         jComboBoxUbicacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxUbicacion.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +86,16 @@ public class Reservar extends javax.swing.JFrame {
 
         jLabel2.setText("Filtro tipo:");
 
+        jComboBoxNombre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         jLabel3.setText("Filtro capacidad:");
+
+        jComboBoxFecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxFechaActionPerformed(evt);
+            }
+        });
 
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -137,18 +112,12 @@ public class Reservar extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Black Ops One", 2, 24)); // NOI18N
-        jLabel4.setText("Reservacion");
+        jLabel4.setText("Cancelar Reserva");
 
-        jLabel5.setText("Filtro nombre:");
-
-        jLabel6.setText("Filtro fecha:");
-
-        jComboBoxNombre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBoxFecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBoxFecha.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxFechaActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -157,46 +126,41 @@ public class Reservar extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConfirmar)
                     .addComponent(jComboBoxUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                .addGap(48, 48, 48))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(198, 198, 198))
+                .addGap(237, 237, 237))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(btnCancelar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jComboBoxUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -216,70 +180,44 @@ public class Reservar extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jComboBoxFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnReservaciones)
-                    .addComponent(btnConfirmar))
-                .addGap(27, 27, 27))
+                        .addGap(90, 90, 90))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar)
+                        .addGap(17, 17, 17))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-            Menu a = new Menu();
-    a.setVisible(true);
-    this.setVisible(false);
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void jComboBoxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoActionPerformed
+    private void jComboBoxUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUbicacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxTipoActionPerformed
-
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-         int filaSeleccionada = TableReservas.getSelectedRow();
-    if (filaSeleccionada != -1) {
-        // Procesar la reserva seleccionada
-        String codigoMesa = TableReservas.getValueAt(filaSeleccionada, 0).toString();
-        // Realizar operación para reservar la mesa
-    } else {
-        JOptionPane.showMessageDialog(this, "Debe seleccionar una reserva.");
-    }
-    }//GEN-LAST:event_btnConfirmarActionPerformed
-
-    private void jComboBoxCapacidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCapacidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxCapacidadActionPerformed
+    }//GEN-LAST:event_jComboBoxUbicacionActionPerformed
 
     private void jComboBoxFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxFechaActionPerformed
 
-    private void jComboBoxUbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUbicacionActionPerformed
+    private void jComboBoxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxUbicacionActionPerformed
+    }//GEN-LAST:event_jComboBoxTipoActionPerformed
 
-//    private void cargarFiltros() {
-//    List<String> ubicaciones = mesaDAO.obtenerUbicaciones(); // Obtiene las ubicaciones únicas
-//    for (String ubicacion : ubicaciones) {
-//        jComboBoxUbicacion.addItem(ubicacion);
-//    }
-//
-//    List<String> tipos = mesaDAO.obtenerTipos(); // Obtiene los tipos de mesa únicos
-//    for (String tipo : tipos) {
-//        jComboBoxTipo.addItem(tipo);
-//    }
-//}
+    private void jComboBoxCapacidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCapacidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxCapacidadActionPerformed
 
-    
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        Menu a = new Menu();
+        a.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TableReservas;
+    private javax.swing.JTable TableCancelaciones;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnConfirmar;
-    private javax.swing.JButton btnReservaciones;
     private javax.swing.JComboBox<String> jComboBoxCapacidad;
     private javax.swing.JComboBox<String> jComboBoxFecha;
     private javax.swing.JComboBox<String> jComboBoxNombre;
