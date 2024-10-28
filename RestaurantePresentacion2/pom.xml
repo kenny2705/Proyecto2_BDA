@@ -7,9 +7,15 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
+<<<<<<< HEAD
             <groupId>${project.groupId}</groupId>
             <artifactId>RestauranteNegocio2</artifactId>
             <version>${project.version}</version>
+=======
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
+>>>>>>> 3a29cc514c79bbab58236bed3129a2a9e2878f2a
         </dependency>
     </dependencies>
     <properties>
