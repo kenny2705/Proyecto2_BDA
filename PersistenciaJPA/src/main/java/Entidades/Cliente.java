@@ -52,8 +52,8 @@ public class Cliente implements Serializable {
         this.id = id;
     }
     
-    String nombre_completo;
-    String telefono;
+    private String nombre_completo;
+    private String telefono;
 
     public String getNombre_completo() {
         return nombre_completo;
