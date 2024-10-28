@@ -25,9 +25,9 @@ public class ReservaDAO implements iReserva {
             stmt.setString(2, reserva.getEstado());
             stmt.setInt(3, reserva.getNumeroPersonas());
             stmt.setDate(4, reserva.getFechaReserva());
-            stmt.setInt(5, reserva.getId()); // Suponiendo que el id_cliente se pasa a través de la propiedad id
-            stmt.setInt(6, reserva.getId()); // Suponiendo que el codigo_mesa se pasa a través de la propiedad id
-            stmt.setInt(7, reserva.getId()); // Suponiendo que el id_cancelacion se pasa a través de la propiedad id
+            stmt.setLong(5, reserva.getId()); // Suponiendo que el id_cliente se pasa a través de la propiedad id
+            stmt.setLong(6, reserva.getId()); // Suponiendo que el codigo_mesa se pasa a través de la propiedad id
+            stmt.setLong(7, reserva.getId()); // Suponiendo que el id_cancelacion se pasa a través de la propiedad id
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,7 +51,7 @@ public class ReservaDAO implements iReserva {
 
             while (rs.next()) {
                 ReservasDTO reserva = new ReservasDTO(
-                        rs.getInt("id_reserva"), 
+                        rs.getLong("id_reserva"), 
                         (float) rs.getDouble("costo_reserva"),
                         rs.getString("estado"),
                         rs.getInt("numero_personas"),
@@ -81,7 +81,7 @@ public class ReservaDAO implements iReserva {
             stmt.setString(2, reserva.getEstado());
             stmt.setInt(3, reserva.getNumeroPersonas());
             stmt.setDate(4, reserva.getFechaReserva());
-            stmt.setInt(5, reserva.getId());
+            stmt.setLong(5, reserva.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -124,7 +124,7 @@ public class ReservaDAO implements iReserva {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     reserva = new ReservasDTO(
-                            rs.getInt("id_reserva"), 
+                            rs.getLong("id_reserva"), 
                             (float) rs.getDouble("costo_reserva"),
                             rs.getString("estado"),
                             rs.getInt("numero_personas"),

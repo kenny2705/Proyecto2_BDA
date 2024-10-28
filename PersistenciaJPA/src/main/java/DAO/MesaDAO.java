@@ -24,7 +24,7 @@ public class MesaDAO implements iMesa {
             stmt.setString(2, mesa.getTipo());
             stmt.setInt(3, mesa.getCapacidad());
             stmt.setString(4, mesa.getUbicacion());
-            stmt.setInt(5, mesa.getId()); // Suponiendo que el id_restaurante se pasa a través de la propiedad id
+            stmt.setLong(5, mesa.getId()); // Suponiendo que el id_restaurante se pasa a través de la propiedad id
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class MesaDAO implements iMesa {
             stmt.setString(2, mesa.getTipo());
             stmt.setInt(3, mesa.getCapacidad());
             stmt.setString(4, mesa.getUbicacion());
-            stmt.setInt(5, mesa.getId());
+            stmt.setLong(5, mesa.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,15 +109,14 @@ public class MesaDAO implements iMesa {
         }
     }
 
-    @Override
-    public MesaDTO obtenerMesaPorId(int id) throws SQLException {
+    public MesaDTO obtenerMesaPorId(Long id) throws SQLException {
         Conexion conexion = new Conexion();
         Connection conn = conexion.conectar();
         String query = "SELECT * FROM mesa WHERE id_mesa = ?";
         MesaDTO mesa = null;
 
         try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, id);
+            stmt.setLong(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     mesa = new MesaDTO(
@@ -138,5 +137,10 @@ public class MesaDAO implements iMesa {
             }
         }
         return mesa;
+    }
+
+    @Override
+    public MesaDTO obtenerMesaPorId(int id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

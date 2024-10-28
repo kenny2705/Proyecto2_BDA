@@ -10,7 +10,7 @@ package DTO;
  */
 public class MesaDTO {
     
-    private int id;
+    private long id;
     private int codigoMesa;
     private String tipo;
     private int capacidad;
@@ -19,7 +19,7 @@ public class MesaDTO {
     public MesaDTO() {
     }
 
-    public MesaDTO(int id, int codigoMesa, String tipo, int capacidad, String ubicacion) {
+    public MesaDTO(long id, int codigoMesa, String tipo, int capacidad, String ubicacion) {
         this.id = id;
         this.codigoMesa = codigoMesa;
         this.tipo = tipo;
@@ -27,11 +27,11 @@ public class MesaDTO {
         this.ubicacion = ubicacion;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -65,6 +65,11 @@ public class MesaDTO {
 
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    @Override
+    public String toString() {
+        return "MesaDTO{" + "id=" + id + ", codigoMesa=" + codigoMesa + ", tipo=" + tipo + ", capacidad=" + capacidad + ", ubicacion=" + ubicacion + '}';
     }
     
     

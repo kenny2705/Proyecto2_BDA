@@ -12,7 +12,7 @@ import java.sql.Date;
  */
 public class ReservasDTO {
     
-    private int id;
+    private Long id;
     private double costoReserva;
     private String estado;
     private int numeroPersonas;
@@ -21,7 +21,7 @@ public class ReservasDTO {
     public ReservasDTO() {
     }
 
-    public ReservasDTO(int id, float costoReserva, String estado, int numeroPersonas, Date fechaReserva) {
+    public ReservasDTO(Long id, float costoReserva, String estado, int numeroPersonas, Date fechaReserva) {
         this.id = id;
         this.costoReserva = costoReserva;
         this.estado = estado;
@@ -29,11 +29,11 @@ public class ReservasDTO {
         this.fechaReserva = fechaReserva;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,7 +68,11 @@ public class ReservasDTO {
     public void setFechaReserva(Date fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
-    
 
+    @Override
+    public String toString() {
+        return "ReservasDTO{" + "id=" + id + ", costoReserva=" + costoReserva + ", estado=" + estado + ", numeroPersonas=" + numeroPersonas + ", fechaReserva=" + fechaReserva + '}';
+    }
+    
     
 }

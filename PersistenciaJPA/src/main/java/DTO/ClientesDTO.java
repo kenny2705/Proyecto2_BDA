@@ -10,24 +10,24 @@ package DTO;
  */
 public class ClientesDTO {
     
-    private int id;
+    private Long id;
     private String nombreC;
     private String telefono;
 
     public ClientesDTO() {
     }
 
-    public ClientesDTO(int id, String nombreC, String telefono) {
+    public ClientesDTO(Long id, String nombreC, String telefono) {
         this.id = id;
         this.nombreC = nombreC;
         this.telefono = telefono;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -45,6 +45,11 @@ public class ClientesDTO {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    @Override
+    public String toString() {
+        return "ClientesDTO{" + "id=" + id + ", nombreC=" + nombreC + ", telefono=" + telefono + '}';
     }
     
     
