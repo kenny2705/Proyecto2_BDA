@@ -1,20 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Negocio;
 
-import DAO.ClienteDAO;
 import DAO.MesaDAO;
+import DAO.ClienteDAO;
 import DAO.ReservaDAO;
+import DTO.ClientesDTO;
+import DTO.MesaDTO;
+import DTO.ReservasDTO;
 import java.sql.Date;
 
-/**
- *
- * @author kevin
- */
 public class ReservaBO {
 
+    MesaDAO mesa = new MesaDAO();
+    ClienteDAO cliente = new ClienteDAO();
+    
+    
     private ReservaDAO reservaDAO;
     private MesaDAO mesaDAO;
     private ClienteDAO clienteDAO;
@@ -26,45 +25,61 @@ public class ReservaBO {
     }
 
     // Método para registrar una nueva reserva
-    public void registrarReserva(String codigo, Date fecha, int capacidad, Long mesaId, Long clienteId, double costo) {
-        Mesa mesa = mesaDAO.obtenerMesaPorId(mesaId);
-        Cliente cliente = clienteDAO.obtenerClientePorId(clienteId);
+    public void registrarReserva(String codigo, Date fecha, int capacidad, int mesaId, int clienteId, float costo) throws Exception {
+        // Verificar si la mesa existe
+       mesa.obtenerMesaPorId(mesaId);
+        if (mesa == null) {
+            throw new Exception("La mesa con ID " + mesaId + " no existe.");
+        }
         
-        Reserva reserva = new Reserva();
-        reserva.setCodigo(codigo);
-        reserva.setFecha(fecha);
-        reserva.setCapacidad(capacidad);
-        reserva.setMesa(mesa);
-        reserva.setCliente(cliente);
-        reserva.setCosto(costo);
-        reservaDAO.guardarReserva(reserva);
+        // Verificar si el cliente existe
+        cliente.obtenerClientePorId(clienteId);
+        if (cliente == null) {
+            throw new Exception("El cliente con ID " + clienteId + " no existe.");
+        }
+
+        // Crear la nueva reserva
+        ReservasDTO reserva = new ReservasDTO();
+        reserva.setId(0); // Asignar un ID predeterminado (puedes manejar esto en la base de datos)
+        reserva.setCostoReserva(costo);
+        reserva.setEstado("Reservada"); // Estado inicial
+        reserva.setNumeroPersonas(capacidad);
+        reserva.setFechaReserva(fecha);
+
+        // Registrar la reserva en la base de datos
+        reservaDAO.agregarReserva(reserva);
     }
 
     // Método para cancelar una reserva
-    public double cancelarReserva(Long reservaId, Date fechaActual) {
-        Reserva reserva = reservaDAO.obtenerReservaPorId(reservaId);
-        
-        long diff = reserva.getFecha().getTime() - fechaActual.getTime();
+    public double cancelarReserva(int reservaId, Date fechaActual) throws Exception {
+        // Obtener la reserva a cancelar
+        ReservasDTO reserva = reservaDAO.obtenerReservaPorId(reservaId);
+        if (reserva == null) {
+            throw new Exception("La reserva con ID " + reservaId + " no existe.");
+        }
+
+        // Calcular la diferencia de tiempo entre la fecha actual y la fecha de la reserva
+        long diff = reserva.getFechaReserva().getTime() - fechaActual.getTime();
         long horasAnticipacion = diff / (60 * 60 * 1000);
 
-        double multa = calcularMulta(reserva.getCosto(), horasAnticipacion);
-        reserva.setMulta(multa);
-        reservaDAO.actualizarReserva(reserva);
+        // Calcular la multa
+        double multa = calcularMulta(reserva.getCostoReserva(), horasAnticipacion);
+        reserva.setEstado("Cancelada"); // Actualizar estado de la reserva
+        reservaDAO.actualizarReserva(reserva); // Actualizar reserva en la base de datos
 
-        return multa;
+        return multa; // Devolver la multa calculada
     }
 
     // Método para calcular la multa dependiendo del tiempo de antelación
     private double calcularMulta(double costoReserva, long horasAnticipacion) {
         if (horasAnticipacion > 48) {
-            return 0.0;
+            return 0.0; // Sin multa si se cancela con más de 48 horas de antelación
         } else if (horasAnticipacion >= 24 && horasAnticipacion <= 48) {
-            return costoReserva * 0.25;
+            return costoReserva * 0.25; // 25% de multa si se cancela entre 24 y 48 horas
         } else {
-            return costoReserva * 0.50;
+            return costoReserva * 0.50; // 50% de multa si se cancela con menos de 24 horas
         }
     }
 
     // Otros métodos relacionados con reservas, como buscar, listar, etc.
 }
-
