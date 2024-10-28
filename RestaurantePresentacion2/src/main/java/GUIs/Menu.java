@@ -122,7 +122,9 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
-        
+  Reportes a = new Reportes();
+        a.setVisible(true);
+        this.setVisible(false);        
     }//GEN-LAST:event_btnReportesActionPerformed
 
     private void btnCancelacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelacionesActionPerformed
@@ -136,7 +138,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
-        // TODO add your handling code here:
+        RegistroMesas a = new RegistroMesas();
+        a.setVisible(true);
+        this.setVisible(false); 
     }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void btnReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservarActionPerformed

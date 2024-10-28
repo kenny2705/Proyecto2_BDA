@@ -38,7 +38,7 @@ public class ReservaDAO implements IReservaDAO {
 
     @Override
     public List<Reserva> buscarReservasPorCliente(String clienteId) {
-        TypedQuery<Reserva> query = emf.createQuery("SELECT reservacionrestaurantes FROM reserva reservacionrestaurantes WHERE reservacionrestaurantes.id_cliente = :id_cliente", Reserva.class);
+        TypedQuery<Reserva> query = emf.createQuery("SELECT * FROM reserva reservacionrestaurantes WHERE reservacionrestaurantes.id_cliente = id_cliente", Reserva.class);
         query.setParameter("id_cliente", clienteId);
         return query.getResultList();
     }

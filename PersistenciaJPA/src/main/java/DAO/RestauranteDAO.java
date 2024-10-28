@@ -49,7 +49,7 @@ public class RestauranteDAO implements IRestauranteDAO{
 
     @Override
     public List<Restaurante> obtenerTodosLosRestaurantes() {
-        return entityManager.createQuery("SELECT r FROM Restaurante r", Restaurante.class).getResultList();
+        return entityManager.createQuery("SELECT * FROM restaurante r", Restaurante.class).getResultList();
     }
     
 }

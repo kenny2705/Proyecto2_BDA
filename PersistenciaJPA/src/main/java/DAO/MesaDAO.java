@@ -30,7 +30,7 @@ public class MesaDAO implements IMesaDAO {
 
    
     public List<Mesa> buscarMesasDisponibles(String ubicacion, int capacidad) {
-        TypedQuery<Mesa> query = entityManager.createQuery("SELECT m FROM Mesa m WHERE m.ubicacion = :ubicacion AND m.capacidad >= :capacidad", Mesa.class);
+        TypedQuery<Mesa> query = entityManager.createQuery("SELECT * FROM mesa m WHERE m.codigo_mesa NOT IN (SELECT reserva.codigo_mesa FROM Reserva )", Mesa.class);
         query.setParameter("ubicacion", ubicacion);
         query.setParameter("capacidad", capacidad);
         return query.getResultList();
