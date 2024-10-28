@@ -1,8 +1,9 @@
-package DAO;
+package dao;
 
 import Interfaces.iReserva; // Importar la interfaz
-import DTO.ReservasDTO; // Importar la clase ReservasDTO
+
 import Conexion.Conexion;
+import DTO.ReservasDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
