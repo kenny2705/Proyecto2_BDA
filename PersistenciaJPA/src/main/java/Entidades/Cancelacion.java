@@ -26,7 +26,7 @@ public class Cancelacion implements Serializable {
     @Id
     @Column(name = "id_cancelacion")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     private Date fechaCancelacion;
     private float multa;
@@ -34,7 +34,7 @@ public class Cancelacion implements Serializable {
     public Cancelacion() {
     }
 
-    public Cancelacion(Long id) {
+    public Cancelacion(int id) {
         this.id = id;
     }
 
@@ -43,17 +43,17 @@ public class Cancelacion implements Serializable {
         this.multa = multa;
     }
 
-    public Cancelacion(Long id, Date fechaCancelacion, float multa) {
+    public Cancelacion(int id, Date fechaCancelacion, float multa) {
         this.id = id;
         this.fechaCancelacion = fechaCancelacion;
         this.multa = multa;
     }
   
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

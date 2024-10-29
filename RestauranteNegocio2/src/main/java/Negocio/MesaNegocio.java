@@ -58,7 +58,7 @@ public class MesaNegocio implements IMesaNegocio {
             tx.begin();
             Mesa mesa = em.find(Mesa.class, mesaDTO.getId());
             if (mesa != null) {
-                mesa.setCodigo_mesa(mesaDTO.getCodigoMesa());
+                mesa.setCodigo_mesa((int) mesaDTO.getCodigoMesa());
                 mesa.setCapacidad(mesaDTO.getCapacidad());
                 mesa.setTipo(mesaDTO.getTipo());
                 mesa.setUbicacion(mesaDTO.getUbicacion());
@@ -105,7 +105,7 @@ public class MesaNegocio implements IMesaNegocio {
 
     private Mesa convertirADominio(MesaDTO dto) {
         Mesa mesa = new Mesa();
-        mesa.setId(dto.getCodigoMesa());
+        mesa.setId((int) dto.getCodigoMesa());
         mesa.setCapacidad(dto.getCapacidad());
         mesa.setTipo(dto.getTipo());
         mesa.setUbicacion(dto.getUbicacion());
@@ -116,8 +116,8 @@ public class MesaNegocio implements IMesaNegocio {
         return new MesaDTO(
                 mesa.getId(),
                 mesa.getCodigo_mesa(),
-                mesa.getCapacidad(),
                 mesa.getTipo(),
+                mesa.getCapacidad(),
                 mesa.getUbicacion()
         );
     }

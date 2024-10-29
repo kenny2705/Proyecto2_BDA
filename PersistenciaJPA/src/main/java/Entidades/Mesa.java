@@ -21,7 +21,7 @@ public class Mesa implements Serializable {
     @Id
     @Column(name = "id_mesa")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     
     private int codigo_mesa;
     private String tipo;
@@ -31,18 +31,13 @@ public class Mesa implements Serializable {
     public Mesa() {
     }
 
-    public Mesa(Long id) {
+    public Mesa(int id) {
         this.id = id;
     }
 
-    public Mesa(int codigo_mesa, String tipo, int capacidad, String ubicacion) {
-        this.codigo_mesa = codigo_mesa;
-        this.tipo = tipo;
-        this.capacidad = capacidad;
-        this.ubicacion = ubicacion;
-    }
+   
 
-    public Mesa(Long id, int codigo_mesa, String tipo, int capacidad, String ubicacion) {
+    public Mesa(int id, int codigo_mesa, String tipo, int capacidad, String ubicacion) {
         this.id = id;
         this.codigo_mesa = codigo_mesa;
         this.tipo = tipo;
@@ -51,11 +46,11 @@ public class Mesa implements Serializable {
     }
     
     
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

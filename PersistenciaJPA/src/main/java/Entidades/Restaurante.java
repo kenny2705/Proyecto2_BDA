@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalTime;
 
 /**
  *
@@ -21,26 +22,26 @@ public class Restaurante implements Serializable {
     @Id
     @Column(name = "id_restaurante")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     private String nombre;
-    private String hora_apertura;
-    private String hora_cierre;
+    private LocalTime hora_apertura;
+    private LocalTime hora_cierre;
 
     public Restaurante() {
     }
 
-    public Restaurante(Long id) {
+    public Restaurante(int id) {
         this.id = id;
     }
 
-    public Restaurante(String nombre, String hora_apertura, String hora_cierre) {
+    public Restaurante(String nombre, LocalTime hora_apertura, LocalTime hora_cierre) {
         this.nombre = nombre;
         this.hora_apertura = hora_apertura;
         this.hora_cierre = hora_cierre;
     }
 
-    public Restaurante(Long id, String nombre, String hora_apertura, String hora_cierre) {
+    public Restaurante(int id, String nombre, LocalTime hora_apertura, LocalTime hora_cierre) {
         this.id = id;
         this.nombre = nombre;
         this.hora_apertura = hora_apertura;
@@ -48,11 +49,11 @@ public class Restaurante implements Serializable {
     }
     
     
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,19 +65,19 @@ public class Restaurante implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getHora_apertura() {
+    public LocalTime getHora_apertura() {
         return hora_apertura;
     }
 
-    public void setHora_apertura(String hora_apertura) {
+    public void setHora_apertura(LocalTime hora_apertura) {
         this.hora_apertura = hora_apertura;
     }
 
-    public String getHora_cierre() {
+    public LocalTime getHora_cierre() {
         return hora_cierre;
     }
 
-    public void setHora_cierre(String hora_cierre) {
+    public void setHora_cierre(LocalTime hora_cierre) {
         this.hora_cierre = hora_cierre;
     }
 

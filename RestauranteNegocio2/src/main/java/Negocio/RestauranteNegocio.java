@@ -109,9 +109,9 @@ public class RestauranteNegocio implements IRestauranteNegocio {
     private RestauranteDTO convertirADTO(Restaurante restaurante) {
         return new RestauranteDTO(
                 restaurante.getId(),
+                restaurante.getNombre(),
                 restaurante.getHora_apertura(),
-                restaurante.getHora_cierre(),
-                restaurante.getNombre()
+                restaurante.getHora_cierre()
                 );
     }
 }

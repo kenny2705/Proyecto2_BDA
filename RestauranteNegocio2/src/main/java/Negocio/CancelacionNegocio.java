@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Negocio;
 
 import DTO.CancelacionDTO;
@@ -20,20 +16,28 @@ import javax.persistence.Persistence;
  */
 public class CancelacionNegocio implements ICancelaNegocio {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("miUnidadDePersistencia");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("nombreDeUnidadPersistencia");
 
     @Override
     public void agregarCancelacion(CancelacionDTO cancelacionDTO) throws Exception {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
+
         try {
             tx.begin();
-            Cancelacion cancelacion = convertirADominio(cancelacionDTO);
+
+            Cancelacion cancelacion = new Cancelacion();
+            cancelacion.setId(cancelacionDTO.getId_cancelacion());
+            cancelacion.setMulta(cancelacionDTO.getMulta());
+            cancelacion.setFechaCancelacion(cancelacionDTO.getFecha_cancelacion());
+
             em.persist(cancelacion);
             tx.commit();
         } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
-            throw e;
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            throw new Exception("Error al agregar la cancelación: " + e.getMessage());
         } finally {
             em.close();
         }
@@ -42,49 +46,12 @@ public class CancelacionNegocio implements ICancelaNegocio {
     @Override
     public List<CancelacionDTO> obtenerTodasLasCancelaciones() throws Exception {
         EntityManager em = emf.createEntityManager();
+
         try {
             List<Cancelacion> cancelaciones = em.createQuery("SELECT c FROM Cancelacion c", Cancelacion.class).getResultList();
-            return cancelaciones.stream().map(this::convertirADTO).collect(Collectors.toList());
-        } finally {
-            em.close();
-        }
-    }
-
-    @Override
-    public void actualizarCancelacion(CancelacionDTO cancelacionDTO) throws Exception {
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        try {
-            tx.begin();
-            Cancelacion cancelacion = em.find(Cancelacion.class, cancelacionDTO.getId_cancelacion());
-            if (cancelacion != null) {
-                cancelacion.setMulta(cancelacionDTO.getMulta());
-                cancelacion.setFechaCancelacion(cancelacionDTO.getFecha_cancelacion());
-                em.merge(cancelacion);
-            }
-            tx.commit();
+             return (List<CancelacionDTO>) cancelaciones.stream().map(c -> new CancelacionDTO(c.getId(),c.getFechaCancelacion(),c.getMulta())).collect(Collectors.toList());
         } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
-            throw e;
-        } finally {
-            em.close();
-        }
-    }
-
-    @Override
-    public void eliminarCancelacion(Long id) throws Exception {
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        try {
-            tx.begin();
-            Cancelacion cancelacion = em.find(Cancelacion.class, id);
-            if (cancelacion != null) {
-                em.remove(cancelacion);
-            }
-            tx.commit();
-        } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
-            throw e;
+            throw new Exception("Error al obtener todas las cancelaciones: " + e.getMessage());
         } finally {
             em.close();
         }
@@ -93,9 +60,15 @@ public class CancelacionNegocio implements ICancelaNegocio {
     @Override
     public CancelacionDTO obtenerCancelacionPorId(Long id) throws Exception {
         EntityManager em = emf.createEntityManager();
+
         try {
             Cancelacion cancelacion = em.find(Cancelacion.class, id);
-            return cancelacion != null ? convertirADTO(cancelacion) : null;
+            if (cancelacion == null) {
+                throw new Exception("Cancelación no encontrada con el ID: " + id);
+            }
+            return new CancelacionDTO(cancelacion.getId(), cancelacion.getFechaCancelacion(), cancelacion.getMulta());
+        } catch (Exception e) {
+            throw new Exception("Error al obtener la cancelación por ID: " + e.getMessage());
         } finally {
             em.close();
         }

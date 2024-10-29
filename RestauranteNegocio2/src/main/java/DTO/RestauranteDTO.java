@@ -11,27 +11,37 @@ import java.time.LocalTime;
  * @author jorge
  */
 public class RestauranteDTO {
-     private Long id_restaurante;
+     private int id_restaurante;
+     private String nombre;
     private LocalTime hora_apertura;
     private LocalTime hora_cierre;
-    private String nombre;
+    
 
     public RestauranteDTO() {
     }
 
-    public RestauranteDTO(Long id_restaurante, LocalTime hora_apertura, LocalTime hora_cierre, String nombre) {
+    public RestauranteDTO(int id_restaurante, String nombre ,LocalTime hora_apertura, LocalTime hora_cierre) {
         this.id_restaurante = id_restaurante;
+        this.nombre = nombre;
         this.hora_apertura = hora_apertura;
         this.hora_cierre = hora_cierre;
-        this.nombre = nombre;
+        
     }
 
-    public Long getId_restaurante() {
+    public int getId_restaurante() {
         return id_restaurante;
     }
 
-    public void setId_restaurante(Long id_restaurante) {
+    public void setId_restaurante(int id_restaurante) {
         this.id_restaurante = id_restaurante;
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public LocalTime getHora_apertura() {
@@ -50,17 +60,13 @@ public class RestauranteDTO {
         this.hora_cierre = hora_cierre;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     @Override
     public String toString() {
         return "RestauranteDTO{" + "id_restaurante=" + id_restaurante + ", hora_apertura=" + hora_apertura + ", hora_cierre=" + hora_cierre + ", nombre=" + nombre + '}';
     }
+
+    
+
+    
     
 }

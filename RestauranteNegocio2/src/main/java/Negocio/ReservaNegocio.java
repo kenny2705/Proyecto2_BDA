@@ -11,6 +11,7 @@ package Negocio;
 import Interfaces.IReservaNegocio;
 import DTO.ReservasDTO;
 import Entidades.Reserva;
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
@@ -33,7 +34,9 @@ public class ReservaNegocio implements IReservaNegocio {
             em.persist(reserva);
             tx.commit();
         } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
+            if (tx.isActive()) {
+                tx.rollback();
+            }
             throw e;
         } finally {
             em.close();
@@ -68,7 +71,9 @@ public class ReservaNegocio implements IReservaNegocio {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
+            if (tx.isActive()) {
+                tx.rollback();
+            }
             throw e;
         } finally {
             em.close();
@@ -88,7 +93,9 @@ public class ReservaNegocio implements IReservaNegocio {
             }
             tx.commit();
         } catch (Exception e) {
-            if (tx.isActive()) tx.rollback();
+            if (tx.isActive()) {
+                tx.rollback();
+            }
             throw e;
         } finally {
             em.close();
@@ -112,9 +119,9 @@ public class ReservaNegocio implements IReservaNegocio {
         reserva.setEstado(dto.getEstado());
         reserva.setNumeroPersonas(dto.getNumeroPersonas());
         reserva.setFechaReserva(dto.getFechaReserva());
-        reserva.setIdCliente(dto.getId());
-        reserva.setCodigoMesa(dto.getCodigoMesa());
-        reserva.setIdCancelacion(dto.getIdCancelacion());
+        reserva.setId(dto.getId());
+        reserva.setMesa(dto.getMesa());
+        reserva.setCancelacion(dto.getCancelacion());
         return reserva;
     }
 
@@ -124,10 +131,9 @@ public class ReservaNegocio implements IReservaNegocio {
                 reserva.getCostoReserva(),
                 reserva.getEstado(),
                 reserva.getNumeroPersonas(),
-                reserva.getFechaReserva(),
-                reserva.getIdCliente(),
-                reserva.getCodigoMesa(),
-                reserva.getIdCancelacion()
-        );
+                (Date) reserva.getFechaReserva(),
+                reserva.getCliente(),
+                reserva.getMesa(),
+                reserva.getCancelacion());
     }
 }

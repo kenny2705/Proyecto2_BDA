@@ -4,6 +4,9 @@
  */
 package DTO;
 
+import Entidades.Cancelacion;
+import Entidades.Cliente;
+import Entidades.Mesa;
 import java.sql.Date;
 
 /**
@@ -17,16 +20,22 @@ public class ReservasDTO {
     private String estado;
     private int numeroPersonas;
     private Date fechaReserva;
+    private Cliente cliente;
+    private  Mesa mesa;
+    private Cancelacion cancelacion;
 
     public ReservasDTO() {
     }
 
-    public ReservasDTO(int id, float costoReserva, String estado, int numeroPersonas, Date fechaReserva) {
+    public ReservasDTO(int id, float costoReserva, String estado, int numeroPersonas, Date fechaReserva, Cliente cliente, Mesa mesa, Cancelacion cancelacion) {
         this.id = id;
         this.costoReserva = costoReserva;
         this.estado = estado;
         this.numeroPersonas = numeroPersonas;
         this.fechaReserva = fechaReserva;
+        this.cliente = cliente;
+        this.mesa = mesa;
+        this.cancelacion = cancelacion;
     }
 
     public int getId() {
@@ -68,7 +77,34 @@ public class ReservasDTO {
     public void setFechaReserva(Date fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
+    }
+
+    public Cancelacion getCancelacion() {
+        return cancelacion;
+    }
+
+    public void setCancelacion(Cancelacion cancelacion) {
+        this.cancelacion = cancelacion;
+    }
+
     
+
+   
 
     
 }

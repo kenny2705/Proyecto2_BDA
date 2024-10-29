@@ -21,7 +21,7 @@ public class Reserva implements Serializable {
     public Reserva() {
     }
 
-    public Reserva(Long id) {
+    public Reserva(int id) {
         this.id = id;
     }
 
@@ -35,7 +35,7 @@ public class Reserva implements Serializable {
         this.cancelacion = cancelacion;
     }
 
-    public Reserva(Long id, float costo_reserva, String estado, int numero_personas, Date fecha_reserva, Cliente cliente, Mesa mesa, Cancelacion cancelacion) {
+    public Reserva(int id, float costo_reserva, String estado, int numero_personas, Date fecha_reserva, Cliente cliente, Mesa mesa, Cancelacion cancelacion) {
         this.id = id;
         this.costo_reserva = costo_reserva;
         this.estado = estado;
@@ -49,13 +49,13 @@ public class Reserva implements Serializable {
     @Id
     @Column(name = "id_reserva")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

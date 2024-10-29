@@ -22,12 +22,12 @@ public class Cliente implements Serializable {
     @Id
     @Column (name="id_cliente")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     public Cliente() {
     }
 
-    public Cliente(Long id) {
+    public Cliente(int id) {
         this.id = id;
     }
 
@@ -36,7 +36,7 @@ public class Cliente implements Serializable {
         this.telefono = telefono;
     }
 
-    public Cliente(Long id, String nombre_completo, String telefono) {
+    public Cliente(int id, String nombre_completo, String telefono) {
         this.id = id;
         this.nombre_completo = nombre_completo;
         this.telefono = telefono;
@@ -44,11 +44,11 @@ public class Cliente implements Serializable {
 
     
     
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
     

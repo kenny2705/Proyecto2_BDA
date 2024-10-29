@@ -14,7 +14,5 @@ import java.util.List;
 public interface ICancelaNegocio {
     void agregarCancelacion(CancelacionDTO cancelacionDTO) throws Exception;
     List<CancelacionDTO> obtenerTodasLasCancelaciones() throws Exception;
-    void actualizarCancelacion(CancelacionDTO cancelacionDTO) throws Exception;
-    void eliminarCancelacion(Long id) throws Exception;
     CancelacionDTO obtenerCancelacionPorId(Long id) throws Exception;
 }
