@@ -13,7 +13,7 @@ import java.sql.Date;
 public class ReservasDTO {
     
     private int id;
-    private double costoReserva;
+    private float costoReserva;
     private String estado;
     private int numeroPersonas;
     private Date fechaReserva;
@@ -37,7 +37,7 @@ public class ReservasDTO {
         this.id = id;
     }
 
-    public double getCostoReserva() {
+    public float getCostoReserva() {
         return costoReserva;
     }
 

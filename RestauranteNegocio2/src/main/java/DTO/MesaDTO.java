@@ -11,7 +11,7 @@ package DTO;
 public class MesaDTO {
     
     private int id;
-    private int codigoMesa;
+    private long codigoMesa;
     private String tipo;
     private int capacidad;
     private String ubicacion;
@@ -35,7 +35,7 @@ public class MesaDTO {
         this.id = id;
     }
 
-    public int getCodigoMesa() {
+    public long getCodigoMesa() {
         return codigoMesa;
     }
 
