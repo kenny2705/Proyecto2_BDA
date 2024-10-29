@@ -55,7 +55,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnAtras.setFont(new java.awt.Font("Teko SemiBold", 3, 24)); // NOI18N
-        btnAtras.setText("Atras");
+        btnAtras.setText("Cerrar");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasActionPerformed(evt);
@@ -134,7 +134,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelacionesActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        // TODO add your handling code here:
+         this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
